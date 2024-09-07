@@ -1,0 +1,7 @@
+# c
+*.out
+
+# rust
+debug
+target
+Cargo.lock
