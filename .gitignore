@@ -1,7 +1,6 @@
 # c
 *.out
-kilo
-
+kilo.o
 # rust
 debug
 target
