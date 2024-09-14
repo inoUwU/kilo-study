@@ -1,3 +1,5 @@
+#include <ctype.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
@@ -29,6 +31,16 @@ int main()
     char c;
     // ファイルを1byteずつよむ
     while (read(STDERR_FILENO, &c, 1) == 1 && c != 'q')
-        ;
+    {
+        // 制御文字であるか判定
+        if (iscntrl(c))
+        {
+            printf("%d\n", c);
+        }
+        else
+        {
+            printf("%d (%c)\n", c, c);
+        }
+    }
     return 0;
 }
