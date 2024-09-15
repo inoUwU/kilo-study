@@ -21,7 +21,7 @@ void enableRawMode()
     // Rawモードに設定
     struct termios raw = orig_termios;
     // ビットを反転させてAND演算で代入する
-    raw.c_iflag &= ~(IXON); // disable ctrl-s and ctrl-q
+    raw.c_iflag &= ~(ICRNL | IXON); // disable ctrl-s and ctrl-q. fix ctrl-m
     raw.c_lflag &= ~(ECHO | ICANON | ISIG);
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
