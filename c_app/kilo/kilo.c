@@ -22,6 +22,7 @@ void enableRawMode()
     struct termios raw = orig_termios;
     // ビットを反転させてAND演算で代入する
     raw.c_iflag &= ~(ICRNL | IXON); // disable ctrl-s and ctrl-q. fix ctrl-m
+    raw.c_oflag &= ~(OPOST);
     raw.c_lflag &= ~(ECHO | ICANON | ISIG);
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
@@ -36,11 +37,11 @@ int main()
         // 制御文字であるか判定
         if (iscntrl(c))
         {
-            printf("%d\n", c);
+            printf("%d\r\n", c);
         }
         else
         {
-            printf("%d (%c)\n", c, c);
+            printf("%d (%c)\r\n", c, c);
         }
     }
     return 0;
