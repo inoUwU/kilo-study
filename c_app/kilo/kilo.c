@@ -23,7 +23,7 @@ void enableRawMode()
     // ビットを反転させてAND演算で代入する
     raw.c_iflag &= ~(ICRNL | IXON); // disable ctrl-s and ctrl-q. fix ctrl-m
     raw.c_oflag &= ~(OPOST);
-    raw.c_lflag &= ~(ECHO | ICANON | ISIG);
+    raw.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 
